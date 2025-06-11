@@ -17,7 +17,7 @@
  .logo {
 	 width: 120px;
 	 height: 120px;
-	 background: url('./assets/images/logo.webp') no-repeat center center/contain;
+	 background: url('../images/logo.webp') no-repeat center center/contain;
 	 margin-bottom: 30px;
 	 animation: bounce 1.5s infinite;
 }
