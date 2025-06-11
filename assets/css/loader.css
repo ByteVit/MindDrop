@@ -1,0 +1,76 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+ body {
+	 background-color: #ffffff;
+	 display: flex;
+	 flex-direction: column;
+	 justify-content: center;
+	 align-items: center;
+	 height: 100vh;
+	 font-family: 'Segoe UI', sans-serif;
+	 color: #333;
+ }
+ .logo {
+	 width: 120px;
+	 height: 120px;
+	 background: url('./assets/images/logo.png') no-repeat center center/contain;
+	 margin-bottom: 30px;
+	 animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {
+		transform: translateY(0);
+	}
+	40% {
+		transform: translateY(-25px);
+	}
+	60% {
+		transform: translateY(-15px);
+	}
+}
+
+h1 {
+	font-weight: bold;
+	color: #ff6600;
+	margin: 0;
+}
+
+p {
+	font-style: italic;
+	font-size: 1.2rem;
+	color: #555;
+	margin: 10px 0 30px 0;
+}
+
+.from {
+	font-weight: bold;
+	color: #333;
+}
+
+.from span {
+	color: #ff6600;
+}
+
+.loader {
+	border: 6px solid #f3f3f3;
+	border-top: 6px solid #ff6600;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	animation: spin 1s linear infinite;
+	margin-top: 20px;
+}
+
+@keyframes spin {
+	0% { 
+		transform: rotate(0deg); 
+	}
+	100% { 
+		transform: rotate(360deg);
+	}
+}
