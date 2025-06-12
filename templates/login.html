@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindDrop</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/login.css')}}">
+</head>
+<body>
+    
+
+    <section class="login">
+        <div class="login-content">
+            <div class="login-content-text">
+                <img src="logo.webp" alt="">
+                <h1>Log In</h1>
+                <p>Log in to MindDrop</p>
+            </div>
+            <form action="" id="loginForm">
+                <div class="login-content-box-input">
+                    <div class="login-content-input-box">
+                        <input type="text" class="username" id="userName" placeholder="Username" required>
+                    </div>
+                    <div class="login-content-input-box">
+                        <input type="password" class="password" id="password" placeholder="password" required>
+                    </div>
+                </div>
+                <button class="login-btn" id="loginBtn">Log In</button>
+            </form>
+        </div>
+    </section>
+
+
+    <script src="{{url_for('static',filename='scripts/login.js')}}"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindDrop</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/signup.css')}}">
+</head>
+<body>
+    
+
+    <section class="signup">
+        <div class="signup-content">
+            <div class="signup-content-text">
+                <img src="{{url_for('static',filename='assets/icons/logo.webp')}}" alt="MindDrop Logo">
+                <h1>Sign up for minddrop</h1>
+                <p>Wlecome to minddrop</p>
+            </div>
+            <form action="">
+                <div class="signup-content-box-input">
+                    <div class="signup-content-input-box">
+                        <input type="text" class="username" id="username" placeholder="Username" required>
+                    </div>
+                    <div class="signup-content-input-box">
+                        <input type="number" class="number" id="number" placeholder="Number" required>
+                    </div>
+                    <div class="signup-content-input-box">
+                        <input type="email" class="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="signup-content-input-box">
+                        <input type="password" class="password" id="password" placeholder="password" required>
+                    </div>
+                </div>
+                <button class="signup-btn">Sign Up</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="{{url_for('static',filename='scripts/signup.js')}}"></script>
+</body>
+</html>
