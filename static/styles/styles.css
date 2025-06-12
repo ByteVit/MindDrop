@@ -39,6 +39,10 @@
       cursor: pointer;
       font-weight: bold;
     }
+    button a {
+      color: #fff;
+      text-decoration: none;
+    }
     .hamburger {
       display: none;
       flex-direction: column;
