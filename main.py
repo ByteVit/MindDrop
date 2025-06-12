@@ -1,11 +1,12 @@
 from dotenv import load_dotenv
 load_dotenv()
-import os
+import os, requests
 ###
-from flask import Flask, request, render_template, url_for
+from flask import Flask, request, render_template, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from modules import PasswordEncoder as pe
 from models.Models import User, Quotes
+from modules.Connections import check_connection
 
 
 app = Flask(__name__)
@@ -37,6 +38,13 @@ def load_screen():
 @app.route("/home")
 def home():
     return render_template("home.html")
+
+
+@app.route("/internet-status", methods=["POST","GET"])
+def internet_status():
+    if check_connection():
+        return jsonify({"success":"Connection Is Active"})
+    return jsonify({"error":"No connection"})
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")

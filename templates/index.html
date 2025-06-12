@@ -12,7 +12,15 @@
   <!--script which renders the landing page-->
   <script>
     setTimeout(() => {
-        window.location.href = "{{url_for('home')}}";
-    }, 3500);
+        fetch("/internet-status")
+            .then(response => response.json())
+            .then(data=>{
+                if(data.error){
+                    alert("Connection Failed... please connect to the internet");
+                }else{
+                    window.location.href = "{{url_for('home')}}";
+                }
+            }
+    }, 5000);
   </script>
 </html>
