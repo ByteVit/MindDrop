@@ -4,7 +4,7 @@ import os
 ###
 from flask import Flask, request, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
-from modules import PaswordEncoder as pe
+from modules import PasswordEncoder as pe
 from models.Models import User, Quotes
 
 
@@ -33,6 +33,10 @@ with app.app_context():
 @app.route("/")
 def load_screen():
     return render_template("load.html")
+
+@app.route("/home")
+def home():
+    return render_template("home.html")
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
