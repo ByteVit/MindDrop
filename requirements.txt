@@ -20,18 +20,7 @@ click-plugins
 click-repl
 colorama
 colorlogs
-cryptography
-distlib
-Django
-ecdsa
-facebook-sdk
-Faker
-fastapi
-filelock
-Flask
-Flask-Cors
-Flask-Login
-Flask-Script
+distli
 Flask-SQLAlchemy
 Flask-WTF
 frozenlist
@@ -88,6 +77,4 @@ wcwidth
 websockets
 Werkzeug
 WTForms
-yarl
 gunicorn
-
