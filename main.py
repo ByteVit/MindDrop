@@ -32,7 +32,7 @@ with app.app_context():
 
 @app.route("/")
 def load_screen():
-    return render_template("load.html")
+    return render_template("index.html")
 
 @app.route("/home")
 def home():
