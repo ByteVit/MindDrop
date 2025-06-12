@@ -46,6 +46,15 @@ def internet_status():
         return jsonify({"success":"Connection Is Active"})
     return jsonify({"error":"No connection"})
 
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+@app.route("/signup")
+def signup():
+    return render_template("signup.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
 

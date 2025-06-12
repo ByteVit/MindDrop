@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../static/styles/styles.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='styles/styles.css')}}">
   <title>MindDrop Landing</title>
 </head>
 <body>
@@ -11,8 +11,8 @@
   <nav>
     <div class="nav-logo" id="navLogo"></div>
     <div class="buttons">
-      <button><a href="../templates/signup.html">Sign Up</a></button>
-      <button><a href="../templates/login.html">Login</a></button>
+        <button><a href="{{url_for('signup')}}">Sign Up</a></button>
+        <button><a href="{{url_for('login')}}">Login</a></button>
     </div>
     <div class="hamburger">
       <div></div>
@@ -20,8 +20,8 @@
       <div></div>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-      <button><a href="../templates/signup.html">Sign Up</a></button>
-      <button><a href="../templates/login.html">Login</a></button>
+        <button><a href="{{url_for('signup')}}">Sign Up</a></button>
+        <button><a href="{{url_for('login.html')}}">Login</a></button>
     </div>
   </nav>
 
@@ -30,9 +30,9 @@
     <div class="hero-text">
       “A single drop of thought can ripple into a wave of brilliance.”
       <br>
-      <button class="cta-btn"><a href="../templates/signup.html">Get Motivated</a></button>
+      <button class="cta-btn"><a href="{{url_for('signup')}}">Get Motivated</a></button>
     </div>
   </div>
-  <script src="../static/scripts/script.js"></script>
+  <script src="{{url_for('static',filename='scripts/script.js')}}"></script>
 </body>
 </html>
