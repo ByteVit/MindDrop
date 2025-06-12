@@ -11,16 +11,20 @@
 
   <!--script which renders the landing page-->
   <script>
-    setTimeout(() => {
-        fetch("/internet-status")
+      function check_internet(){
+          fetch("{{url_for('internet_status')}}")
             .then(response => response.json())
-            .then(data=>{
+            .then(data => {
                 if(data.error){
-                    alert("Connection Failed... please connect to the internet");
+                    alert("Connection Failed... Please connect to the internet and reload");
                 }else{
                     window.location.href = "{{url_for('home')}}";
                 }
-            }
-    }, 5000);
+            })
+            .catch(error=>{
+                alert("Error"+" " + error);
+            })
+      }
+      document.addEventListener("DOMContentLoaded",check_internet)
   </script>
 </html>
