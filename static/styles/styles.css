@@ -1,0 +1,132 @@
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .nav-logo {
+      width: 60px;
+      height: 60px;
+      background: url('../assets/images/logo.webp') no-repeat center center/contain;
+      transition: all 1s ease;
+      position: relative;
+      animation: fly 1s forwards;
+    }
+
+    @keyframes fly {
+  from {
+    transform: translateY(100px) scale(2);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+    .buttons {
+      display: flex;
+      gap: 15px;
+    }
+    .buttons button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      background: #ff6600;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: #333;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      padding: 10px;
+      border-radius: 8px;
+      z-index: 5;
+    }
+    .mobile-menu button {
+      margin: 5px 0;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      background: #ff6600;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 50px 20px;
+      flex-wrap: wrap;
+    }
+    .hero-img {
+      width: 250px;
+      height: 250px;
+      background: url('./hero-image.webp') no-repeat center center/contain;
+      animation: rotate 8s linear infinite;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-text {
+      max-width: 500px;
+      font-size: 1.8rem;
+      color: #333;
+      font-style: italic;
+      text-align: center;
+      margin-top: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .cta-btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      background: #ff6600;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .cta-btn:hover {
+      background: #e05500;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .buttons {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .hero {
+        flex-direction: column;
+      }
+    }
