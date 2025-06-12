@@ -83,7 +83,7 @@
     .hero-img {
       width: 250px;
       height: 250px;
-      background: url('./hero-image.webp') no-repeat center center/contain;
+      background: url('../assets/images/hero-image.webp') no-repeat center center/contain;
       animation: rotate 8s linear infinite;
       position: relative;
       z-index: 1;
