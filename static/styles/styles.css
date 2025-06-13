@@ -25,7 +25,6 @@
       width: 60px;
       height: 60px;
       background: url('../assets/images/logo.webp') no-repeat center center/contain;
-      transition: all 1s ease;
       position: relative;
       animation: fly 1s forwards;
       border-radius: 10px;
