@@ -1,5 +1,19 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+      gap: 3vh;
+      background-color: #fff;
+    }
+    
     nav {
       display: flex;
+      flex-basis: 10%;
       align-items: center;
       justify-content: space-between;
       padding: 20px;
@@ -14,6 +28,7 @@
       transition: all 1s ease;
       position: relative;
       animation: fly 1s forwards;
+      border-radius: 10px;
     }
 
     @keyframes fly {
@@ -79,10 +94,12 @@
 
     .hero {
       display: flex;
+      flex-basis: 80%;
       align-items: center;
-      justify-content: space-around;
-      padding: 50px 20px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2vh;
+      padding: 60px 20px;
     }
     .hero-img {
       width: 250px;
@@ -91,6 +108,7 @@
       animation: rotate 8s linear infinite;
       position: relative;
       z-index: 1;
+      border-radius: 20px;
     }
     .hero-text {
       max-width: 500px;
