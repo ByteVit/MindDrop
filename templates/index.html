@@ -16,7 +16,7 @@
             .then(response => response.json())
             .then(data => {
                 if(data.error){
-                    alert("Connection Failed... Please connect to the internet and reload");
+                    alert("Connection Failed... Please connect to the internet... Reloading...");
                 }else{
                     window.location.href = "{{url_for('home')}}";
                 }
@@ -25,6 +25,10 @@
                 alert("Error"+" " + error);
             })
       }
-      document.addEventListener("DOMContentLoaded",check_internet)
+      document.addEventListener("DOMContentLoaded",()=>{
+          setInterval(()=>{
+              check_internet()
+          },5000)
+      })
   </script>
 </html>
