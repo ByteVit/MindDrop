@@ -4,7 +4,7 @@ import os, requests
 ###
 from flask import Flask, request, render_template, url_for, jsonify,session
 from flask_sqlalchemy import SQLAlchemy
-from models.Models import User, Quotes
+from models.Models import db, User, Quotes
 from modules.Connections import check_connection
 from modules.PasswordEncoder import encode_str
 
@@ -24,7 +24,7 @@ app.config["API_KEY"] = API_KEY
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///mindrop.db"
 
 
-db = SQLAlchemy(app)
+db = init_app(app)
 
 with app.app_context():
     db.create_all()
