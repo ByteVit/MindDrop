@@ -55,7 +55,7 @@ def signup():
 
 @app.route("/new-user",methods = ["POST","GET"])
 def new_user():
-    data = request.json(silent=True)
+    data = request.get_json(silent=True)
     if not data:
         return jsonify({"error":"Enter valid Credentials"})
     user = User.query.filter_by(username=data.username).first()
