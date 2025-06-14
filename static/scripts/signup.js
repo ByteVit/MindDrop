@@ -24,11 +24,20 @@ document.getElementById("loginForm").addEventListener("submit", (event)=>{
     .then((data => {
       let messageDiv = document.getElementById("message");
       if(data.error){
-        messageDiv.innerText = data.error;
-        messageDiv.backgroundColor = "red"
-      }else{
+              messageDiv.innerText = data.error;
+              messageDiv.color = "red"
+          setTimeout(()=>{
+              messageDiv.innerText="";
+          },2000)
+      }else if( data.success){
         messageDiv.innerText = data.success;
-        messageDiv.backgroundColor = "green";
+        messageDiv.color = "green"
+        setTimeout(()=>{
+            username ="";
+            password="";
+            email="";
+            messageDiv.innerText="";
+          },2000)
       }
     }))
     .catch((error) => {

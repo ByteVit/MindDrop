@@ -58,14 +58,14 @@ def new_user():
     data = request.get_json(silent=True)
     if not data:
         return jsonify({"error":"Enter valid Credentials"})
-    user = User.query.filter_by(username=data.username).first()
-    email = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(username=data["username"]).first()
+    email = User.query.filter_by(email=data["email"]).first()
     if user or email:
         return jsonify({"error":"Credential Already exists."})
-    if len(data.password) < 6:
+    if len(data["password"]) < 6:
         return jsonify({"error":"Password should be greater than or equals to 6."})
-    pasword = encode_str(password)
-    new_user = User(username=data.username, email=data.email,password=password)
+    password = encode_str(data["password"])
+    new_user = User(username=data["username"], email=data["email"],password=password)
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"success":"Registration succesful"})
