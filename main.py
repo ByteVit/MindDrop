@@ -58,18 +58,37 @@ def new_user():
     data = request.get_json(silent=True)
     if not data:
         return jsonify({"error":"Enter valid Credentials"})
-    user = User.query.filter_by(username=data["username"]).first()
+    user = User.query.filter_by(username=data["username"].strip()).first()
     email = User.query.filter_by(email=data["email"]).first()
     if user or email:
         return jsonify({"error":"Credential Already exists."})
     if len(data["password"]) < 6:
         return jsonify({"error":"Password should be greater than or equals to 6."})
     password = encode_str(data["password"])
-    new_user = User(username=data["username"], email=data["email"],password=password)
+    new_user = User(username=data["username"].strip(), email=data["email"].strip(),password=password.strip())
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"success":"Registration succesful"})
 
+
+
+@app.route("/log-user",methods=["POST","GET"])
+def log_user():
+    data = request.get_json(silent=True)
+    if not data:
+        return jsonify({"error":"Error parsing your Details"})
+    username = data["username"].strip()
+    password = encode_str(data["password"].strip())
+    email = User.query.filter_by(email=username,password=password.strip()).first()
+    username = User.query.filter_by(username=username.strip(),password=password.strip()).first()
+    if not email or username:
+        return jsonify({"error":"Invalid Credentials"})
+    if email:
+        session["username"] = email.username
+        return jsonify({"success":"Login successful"})
+    user = User.query.filter_by(username=username.strip(),password=hashed_password.strip()).first()
+    session["username"] = user.username
+    return jsonify({"success":"Log in succesful!", "token":app.config["SECRET_KEY"]})
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
 

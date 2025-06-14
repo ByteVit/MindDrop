@@ -15,17 +15,18 @@
                 <img src="{{url_for('static', filename='assets/images/logo.webp')}}" alt="MindDrop Logo">
                 <p>Welcome <span class="minddropper">MindDropper</span></p>
             </div>
-            <form action="" id="loginForm">
+            <div id="message" style="text-align:center;"></div>
+            <form id="loginForm">
                 <div class="login-content-box-input">
                     <div class="login-content-input-box">
-                        <input type="text" class="username" id="userName" placeholder="Username" required>
+                        <input type="text" class="username" id="username" placeholder="Username or email" required>
                     </div>
                     <div class="login-content-input-box">
                         <input type="password" class="password" id="password" placeholder="password" required>
                     </div>
                 </div>
                 <button class="login-btn" id="loginBtn">Log In</button>
-                <a href="">Not yet a <span class="minddropper">MindDropper</span> Sign up</a>
+                <a href="{{url_for('signup')}}">Not yet a <span class="minddropper">MindDropper</span> Sign up</a>
             </form>
         </div>
     </section>
