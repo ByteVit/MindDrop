@@ -1,5 +1,5 @@
-document.getElementById('loginForm').addEventListener('submint', function(e) {
-
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
     const userName = document.getElementById('userName').Value.trim();
     const number = document.getElementById('number').Value.trim();
     const email = document.getElementById('email').Value.trim();
