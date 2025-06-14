@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from models.Models import db, User, Quotes
 from modules.Connections import check_connection
 from modules.PasswordEncoder import encode_str
+from modules import checkEmail
 
 
 app = Flask(__name__)
@@ -74,21 +75,28 @@ def new_user():
 
 @app.route("/log-user",methods=["POST","GET"])
 def log_user():
+    global SECRET_KEY
     data = request.get_json(silent=True)
     if not data:
-        return jsonify({"error":"Error parsing your Details"})
-    username = data["username"]
+        return jsonify({"error":"Invalid credentials"})
+    users = User.query.all()
+    user = data["username"]
     password = encode_str(data["password"])
-    email = User.query.filter_by(email=username,password=password).first()
-    username = User.query.filter_by(username=username,password=password).first()
-    if not email or username:
-        return jsonify({"error":"Invalid Credentials"})
-    if email:
-        session["username"] = email.username
-        return jsonify({"success":"Login successful", "token":app.config["SECRET_KEY"]})
-    if username:
+    if checkEmail.check_email(user):
+        user = User.query.filter_by(email=user).first()
+        if not user:
+            return jsonify({"error":"Email does not exists!"})
+        if user.password != password:
+            return jsonify({"error":"Invalid credentials"})
         session["username"] = user.username
-        return jsonify({"success":"Log in succesful!", "token":app.config["SECRET_KEY"]})
+        return jsonify({"token":SECRET_KEY,"success":"Login sucess!"})
+    user = User.query.filter_by(username=user).first()
+    if not user:
+        return jsonify({"error":"That username does not exists"})
+    if user.password != password:
+        return jsonify({"error":"Invalid credentials"})
+    session["username"] = user.username
+    return jsonify({"success":"Login successful","token":SECRET_KEY})
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
 
