@@ -25,13 +25,13 @@ document.getElementById("loginForm").addEventListener("submit", (event)=>{
       let messageDiv = document.getElementById("message");
       if(data.error){
               messageDiv.innerText = data.error;
-              messageDiv.color = "red"
+              messageDiv.style.color = "red"
           setTimeout(()=>{
               messageDiv.innerText="";
           },2000)
       }else if( data.success){
         messageDiv.innerText = data.success;
-        messageDiv.color = "green"
+        messageDiv.style.color = "green"
         setTimeout(()=>{
             username ="";
             password="";

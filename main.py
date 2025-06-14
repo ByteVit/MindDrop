@@ -77,18 +77,18 @@ def log_user():
     data = request.get_json(silent=True)
     if not data:
         return jsonify({"error":"Error parsing your Details"})
-    username = data["username"].strip()
-    password = encode_str(data["password"].strip())
-    email = User.query.filter_by(email=username,password=password.strip()).first()
-    username = User.query.filter_by(username=username.strip(),password=password.strip()).first()
+    username = data["username"]
+    password = encode_str(data["password"])
+    email = User.query.filter_by(email=username,password=password).first()
+    username = User.query.filter_by(username=username,password=password).first()
     if not email or username:
         return jsonify({"error":"Invalid Credentials"})
     if email:
         session["username"] = email.username
-        return jsonify({"success":"Login successful"})
-    user = User.query.filter_by(username=username.strip(),password=hashed_password.strip()).first()
-    session["username"] = user.username
-    return jsonify({"success":"Log in succesful!", "token":app.config["SECRET_KEY"]})
+        return jsonify({"success":"Login successful", "token":app.config["SECRET_KEY"]})
+    if username:
+        session["username"] = user.username
+        return jsonify({"success":"Log in succesful!", "token":app.config["SECRET_KEY"]})
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
 

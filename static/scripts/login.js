@@ -7,7 +7,7 @@ document.getElementById("loginForm").addEventListener("submit", (event)=>{
   const username = document.getElementById("username").value
   const password = document.getElementById("password").value
   
-  if(username && email && password){
+  if(username && password){
     fetch("/log-user",{
       method:"POST",
       headers:{
@@ -19,22 +19,26 @@ document.getElementById("loginForm").addEventListener("submit", (event)=>{
       })
     })
     .then((res => res.json()))
-    .then((data => {
+    .then((data) => {
       let messageDiv = document.getElementById("message");
-      if(data.error and data.token){
-        messageDiv.innerText = data.error;
-        messageDiv.backgroundColor = "red"
-        setTimeout(()=>>
-            messageDiv.innerText="";
-            localStorage.setItem('auth_key',data.token)
-            window.location.href="{{url_for('home')}}"
-      }else{
+      if(data.success && data.token){
         messageDiv.innerText = data.success;
-        messageDiv.backgroundColor = "green";
+        messageDiv.style.color = "green"
+        setTimeout(()=>{
+            messageDiv.innerText="";
+            localStorage.setItem("auth_key",String(data.token))
+            window.location.href="{{url_for('home')}}"
+      },3000)
+      }else{
+        messageDiv.innerText = data.error;
+        messageDiv.style.color = "red";
+        setTimeout(()=>{
+            messageDiv.innerText="";
+        },2000)
       }
-    }))
+    })
     .catch((error) => {
-      console.error('Error:', error);
+      console.error('Login Error:', error);
     })
   }else{
     alert("One or more fields have not been filled.")
