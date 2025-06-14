@@ -63,7 +63,7 @@ def new_user():
     if user or email:
         return jsonify({"error":"Credential Already exists."})
     if len(data.password) < 6:
-        return jsonify("error":"Password should be greater than or equals to 6."})
+        return jsonify({"error":"Password should be greater than or equals to 6."})
     pasword = encode_str(password)
     new_user = User(username=data.username, email=data.email,password=password)
     db.session.add(new_user)
