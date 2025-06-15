@@ -4,9 +4,10 @@ import os, requests
 ###
 from flask import Flask, request, render_template, url_for, jsonify,session
 from flask_sqlalchemy import SQLAlchemy
-from models.Models import User, Quotes
+from models.Models import db, User, Quotes
 from modules.Connections import check_connection
 from modules.PasswordEncoder import encode_str
+from modules import checkEmail
 
 
 app = Flask(__name__)
@@ -24,7 +25,7 @@ app.config["API_KEY"] = API_KEY
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///mindrop.db"
 
 
-db = SQLAlchemy(app)
+db.init_app(app)
 
 with app.app_context():
     db.create_all()
@@ -55,21 +56,48 @@ def signup():
 
 @app.route("/new-user",methods = ["POST","GET"])
 def new_user():
-    data = request.json(silent=True)
+    data = request.get_json(silent=True)
     if not data:
         return jsonify({"error":"Enter valid Credentials"})
-    user = User.query.filter_by(username=data.username).first()
-    email = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(username=data["username"].strip()).first()
+    email = User.query.filter_by(email=data["email"]).first()
     if user or email:
         return jsonify({"error":"Credential Already exists."})
-    if len(data.password) < 6:
+    if len(data["password"]) < 6:
         return jsonify({"error":"Password should be greater than or equals to 6."})
-    pasword = encode_str(password)
-    new_user = User(username=data.username, email=data.email,password=password)
+    password = encode_str(data["password"])
+    new_user = User(username=data["username"].strip(), email=data["email"].strip(),password=password.strip())
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"success":"Registration succesful"})
 
+
+
+@app.route("/log-user",methods=["POST","GET"])
+def log_user():
+    global SECRET_KEY
+    data = request.get_json(silent=True)
+    if not data:
+        return jsonify({"error":"Invalid credentials"})
+    users = User.query.all()
+    user = data["username"]
+    password = encode_str(data["password"])
+    if checkEmail.check_email(user):
+        user = User.query.filter_by(email=user).first()
+        if not user:
+            return jsonify({"error":"Email does not exists!"})
+        if user.password != password:
+            return jsonify({"error":"Invalid credentials"})
+        session["username"] = user.username
+        return jsonify({"token":SECRET_KEY,"success":"Login sucess!"})
+    user = User.query.filter_by(username=user).first()
+    if not user:
+        return jsonify({"error":"That username does not exists"})
+    if user.password != password:
+        return jsonify({"error":"Invalid credentials"})
+    session["username"] = user.username
+    return jsonify({"success":"Login successful","token":SECRET_KEY})
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
+
 
