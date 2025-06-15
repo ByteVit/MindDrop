@@ -27,7 +27,8 @@ document.getElementById("loginForm").addEventListener("submit", (event)=>{
         setTimeout(()=>{
             messageDiv.innerText="";
             localStorage.setItem("auth_key",String(data.token))
-            window.location.href="{{url_for('home')}}"
+	    localStorage.setItem("username",username)
+            window.location.href="/home"
       },3000)
       }else{
         messageDiv.innerText = data.error;
