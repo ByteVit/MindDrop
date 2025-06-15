@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 
 //ByteVit
@@ -9,6 +10,15 @@ document.getElementById("loginForm").addEventListener("submit", (event)=>{
   const password = document.getElementById("password").value
   
   if(username && email && password){
+=======
+document.getElementById('loginForm').addEventListener('submit', (event)=> {
+    event.preventDefault();
+    const username = document.getElementById("username").value
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
+    alert("js active")
+    if(username && email && password ){
+>>>>>>> origin/HEAD
     fetch("/new-user",{
       method:"POST",
       headers:{
