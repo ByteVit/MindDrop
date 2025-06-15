@@ -1,13 +1,48 @@
-document.getElementById('loginForm').addEventListener('submint', function(e) {
+//
 
-    const userName = document.getElementById('userName').Value.trim();
-    const password = document.getElementById('password').Value.trim();
+//ByteVit
 
-    if(userName && password ){
-        document.getElementById('message').style.color = 'green';
-        document.getElementById('message').innerText = 'Login Successful';
-    }else{
-        document.getElementById('message').style.color = 'red';
-        document.getElementById('message').innerText = 'Invalid credential';
-    }
-});
+document.getElementById("loginForm").addEventListener("submit", (event)=>{
+  event.preventDefault();
+  const username = document.getElementById("username").value
+  const password = document.getElementById("password").value
+  
+  if(username && password){
+    fetch("/log-user",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        username : username,
+        password : password
+      })
+    })
+    .then((res => res.json()))
+    .then((data) => {
+      let messageDiv = document.getElementById("message");
+      if(data.success && data.token){
+        messageDiv.innerText = data.success;
+        messageDiv.style.color = "green"
+        setTimeout(()=>{
+            messageDiv.innerText="";
+            localStorage.setItem("auth_key",String(data.token))
+            window.location.href="{{url_for('home')}}"
+      },3000)
+      }else{
+        messageDiv.innerText = data.error;
+        messageDiv.style.color = "red";
+        setTimeout(()=>{
+            messageDiv.innerText="";
+        },2000)
+      }
+    })
+    .catch((error) => {
+      console.error('Login Error:', error);
+    })
+  }else{
+    alert("One or more fields have not been filled.")
+  }
+})
+
+
