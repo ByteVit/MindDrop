@@ -29,6 +29,12 @@ document.getElementById("loginForm").addEventListener("submit", (event)=>{
             localStorage.setItem("auth_key",String(data.token))
 	    localStorage.setItem("username",username)
             window.location.href="/home"
+	    let token = localStorage.getItem("auth_key")
+	    if (token){
+               alert("Welcome "+ " "+ username);
+		}else{
+		  alert("There was an error logging you in.");
+		}
       },3000)
       }else{
         messageDiv.innerText = data.error;
