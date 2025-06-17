@@ -16,7 +16,7 @@
             .then(response => response.json())
             .then(data => {
                 if(data.error){
-                    alert("Connection Failed... Please connect to the internet... Reloading...");
+                    alert("Connection Failed... Please connect to the internet...");
                 }else{
                     window.location.href = "{{url_for('home')}}";
                 }
