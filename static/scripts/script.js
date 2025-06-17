@@ -71,3 +71,6 @@ function toggleMenu() {
         });
     });
 })();
+
+import {startTypingSequence} from "./typingText.js";
+document.addEventListener("DOMContentLoaded", startTypingSequence);
