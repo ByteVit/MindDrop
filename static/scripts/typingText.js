@@ -1,4 +1,4 @@
-const quotes = ['“A single drop of thought can ripple into a wave of brilliance.”', '"Ideas are seeds; nurture them, and they’ll become forests of change."', '"In the stillness of reflection, brilliance is born."', '"From scattered thoughts, great symphonies of wisdom are composed."', '"The quietest thoughts sometimes carry the loudest truths."', '"An idea whispered in silence can echo louder than a thousand shouts."'];
+const quotes = ['"A moving brain is a magnet for wisdom."','“A single drop of thought can ripple into a wave of brilliance.”', '"Ideas are seeds; nurture them, and they’ll become forests of change."', '"In the stillness of reflection, brilliance is born."', '"From scattered thoughts, great symphonies of wisdom are composed."', '"The quietest thoughts sometimes carry the loudest truths."', '"An idea whispered in silence can echo louder than a thousand shouts."'];
 
 let quotesIndex = 0;
 let quotesCharIndex = 0;
