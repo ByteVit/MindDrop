@@ -101,6 +101,10 @@ def log_user():
 @app.route("/otp-code", methods=["POST","GET"])
 def otp_code():
     #future code here
+    let code = None #sets to none cus of no value now.
+
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
 
