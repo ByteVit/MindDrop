@@ -97,6 +97,10 @@ def log_user():
         return jsonify({"error":"Invalid credentials"})
     session["username"] = user.username
     return jsonify({"success":"Login successful","token":SECRET_KEY})
+
+@app.route("/otp-code", methods=["POST","GET"])
+def otp_code():
+    #future code here
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
 
