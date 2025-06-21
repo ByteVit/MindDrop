@@ -20,4 +20,4 @@ document.addEventListener("DOMContentLoaded", () => {
 	let token = localStorage.getItem("auth_key");
 	let user = localStorage.getItem("username");
 	getFeed(user , token);
-}
+})
