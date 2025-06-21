@@ -4,7 +4,7 @@ let quotesIndex = 0;
 let quotesCharIndex = 0;
 let isDeleting = false;
 const typingSpeed = 80;
-const deletingSpeed = 40;
+const deletingSpeed = 20;
 const pauseBetweenQuotes = 1500;
 const typewriterElement = document.querySelector('.hero-text p');
 let currentTimeout;
