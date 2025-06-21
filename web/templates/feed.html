@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+		<title>MinDrop</title>
+		<link rel="stylesheet" href="{{url_for('static',filename='styles/feed.css')}}">
+	</head>
+	<body>
+		<header>
+			{% if username and token %}
+			   <p>Hello <span id="username">{{username}}</span></p>
+			{% else %}
+			  <p>Hello <span id="username">Guest</span></p>
+			  <details>
+				  <summary>Menu</summary>
+				  <a href="#">Login</a>
+				  <a href="#">Signup</a>
+				  <a href="#">Dashboard</a>
+			  </details>
+			{% endif %}
+		</header>
+		<section>
+			<h2>Your Featured Quotes</h2>
+			{% if not user_quotes %}
+			 <p>You do not have any Quote yet. You can start today!</p>
+			 {% endif %}
+			{% if user_quotes %}
+			  {% for quote in user_quotes %}
+			   <div>
+			     <em>quote.quote</em>
+			     <strong><small> ~ {{quote.author}}</small></strong>
+			 </div>
+			   {% endfor %}
+			{% endif %}
+			<div>
+				
+				<h2>Featured Quotes</h2>
+				{% if not featured_quotes %}
+				   <p>No Featured quotes, Follow friends to see thier latest quotes</p>
+				 {% endif %}
+				 {% if featured_quotes %}
+				    {% for quote in featured_quotes %}
+				<div>
+					<em>quote.quote</em>
+					<strong><small>quote.author</small></strong>
+					<div class="options">
+						<button id="like">❤️</button>
+						<button id="follow">➕</button>
+				</div>
+				    {% endfor %}
+				{% endif %}
+				
+		</section>
+		<script src="{{url_for('static', filename='scripts/feed.js')}}"></script>
+	</body>
+</html>

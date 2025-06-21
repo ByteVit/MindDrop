@@ -28,7 +28,7 @@ document.getElementById("loginForm").addEventListener("submit", (event)=>{
             messageDiv.innerText="";
             localStorage.setItem("auth_key",String(data.token))
 	    localStorage.setItem("username",username)
-            window.location.href="/home"
+            window.location.href="/feed-page"
 	    let token = localStorage.getItem("auth_key")
 	    if (token){
                alert("Welcome "+ " "+ username);

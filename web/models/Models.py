@@ -43,19 +43,16 @@ class Quotes(db.Model):
     quote = db.Column(db.Text,nullable=False)
 
     category = db.Column(db.String(130),nullable=False,default="No Category")
-asi
     created_at = db.Column(db.Date,default=datetime.utcnow)
 
-    unique_id = db.Column(db.ForeignKey("user.id"))
+    author = db.Column(db.ForeignKey("user.id"))
 
 class Follower(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String, nullable=False, unique=True)
-    unique_id = db.Column(db.ForeignKey('user.id'))
+    follower_id = db.Column(db.ForeignKey('user.id'))
 
 class Likes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String, nullable=False, unique=True)
-    unique_id = db.Column(db.ForeignKey('user.id'))
+    liked_by = db.Column(db.ForeignKey('user.id')) 
 
 #More models to be added soon....

@@ -5,9 +5,9 @@
 
 document.getElementById('loginForm').addEventListener('submit', (event)=> {
     event.preventDefault();
-    const username = document.getElementById("username").value
-    const email = document.getElementById('email').value
-    const password = document.getElementById('password').value
+    let username = document.getElementById("username").value
+    let email = document.getElementById('email').value
+    let password = document.getElementById('password').value
     if(username && email && password ){
     fetch("/new-user",{
       method:"POST",

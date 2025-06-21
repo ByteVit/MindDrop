@@ -4,10 +4,10 @@ import os, requests
 ###
 from flask import Flask, request, render_template, url_for, jsonify,session
 from flask_sqlalchemy import SQLAlchemy
-from models.Models import db, User, Quotes
-from modules.Connections import check_connection
-from modules.PasswordEncoder import encode_str
-from modules import checkEmail
+from web.models.Models import db, User, Quotes
+from web.modules.Connections import check_connection
+from web.modules.PasswordEncoder import encode_str
+from web.modules import checkEmail
 
 
 app = Flask(__name__)
@@ -103,8 +103,22 @@ def otp_code():
     #future code here
     code = None #sets to none cus of no value now.
 
+@app.route("/feed-page")
+def feed_page():
+    return render_template('feed.html')
 
-
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
-
+@app.route("/get-feed", methods=["POST", "GET"])
+def get_feed():
+    global SECRET_KEY
+    data = request.get_json(silent=True)
+    if not data:
+        return jsonify({"error":"Error Happened. This is not the page you are looking for."})
+    token = data["token"]
+    if SECRET_KEY != token:
+        return jsonify({"error":"Sorry, this is not the page you are looking for"})
+    username = data["username"]
+    session["current_user"] = username
+    user = User.query.filter_by(username=username).first()
+    quotes = random.sample(Quote.query.all(), k=15)
+    featured_quotes = random.sample(user.quotes, k=5)
+    return render_template("feed.html" , username=session.get("username"), featured_quotes=featured_quotes, quotes=quotes)
